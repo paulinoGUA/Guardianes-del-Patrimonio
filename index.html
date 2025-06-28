@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guardianes del Kichwa</title>
+
+  <style>
+    /* --- ESTILOS GENERALES Y RESET BÁSICO --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdfaee; /* Color de fondo general para la sección de juegos */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- PORTADA / INICIO --- */
+#portada {
+    /* Ruta a tu imagen de portada */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/portada-tundunchil.jpg');
+    
+    /* Ajustes de la imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    
+    /* Estilos del texto para legibilidad */
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+
+    /* Layout para centrar contenido */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+#portada h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#portada p {
+    font-size: 1.5rem;
+    max-width: 800px;
+}
+
+#empezar-btn {
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #ff8c00; /* Naranja vibrante */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#empezar-btn:hover {
+    transform: scale(1.05);
+    background-color: #e67e00;
+}
+
+/* --- CONTENEDOR PRINCIPAL Y ACTIVIDADES --- */
+#contenido {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.actividades-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea si no caben */
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.actividad-btn, .volver-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid #0056b3;
+    background-color: white;
+    color: #0056b3;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.actividad-btn:hover, .volver-btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.volver-btn {
+    margin-bottom: 20px;
+}
+
+
+/* --- ÁREA DE JUEGOS --- */
+#contenedor-juego {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+#retroalimentacion {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #28a745; /* Verde para respuestas correctas */
+    min-height: 30px; /* Evita que el layout salte */
+}
+
+/* --- ESTILOS COMUNES PARA LOS JUEGOS DE ARRASTRAR Y SOLTAR --- */
+.draggable {
+    padding: 10px 15px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    cursor: grab;
+    user-select: none;
+    text-align: center;
+}
+
+.dropzone {
+    border: 2px dashed #007bff;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.dropzone:hover {
+    background-color: #d6eaff;
+}
+
+/* --- JUEGO 1: ATUENDO ANCESTRAL --- */
+#palabras-atuendo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#danzantes-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.personaje {
+    text-align: center;
+    width: 45%;
+}
+
+.personaje img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.personaje .dropzone {
+    min-height: 150px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-content: flex-start;
+}
+
+/* --- JUEGO 2: CRÓNICA DEL SOL --- */
+#texto-cronica p {
+    font-size: 1.1rem;
+    line-height: 2.2;
+}
+
+#texto-cronica .dropzone {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 120px;
+    min-height: 35px;
+    padding: 5px;
+    margin: 0 5px;
+    border-style: solid;
+    border-width: 0 0 2px 0; /* Solo línea inferior */
+    text-align: center;
+}
+
+#palabras-arrastrables {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+/* --- JUEGO 3: CALENDARIO SAGRADO --- */
+.pregunta-juego3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    font-size: 1.1rem;
+}
+
+.pregunta-juego3 select {
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    min-width: 200px;
+}
+
+/* --- DISEÑO RESPONSIVO (PARA MÓVILES) --- */
+@media (max-width: 768px) {
+    #portada h1 {
+        font-size: 2.5rem;
+    }
+    #portada p {
+        font-size: 1.2rem;
+    }
+    
+    .actividades-container {
+        flex-direction: column; /* Apila los botones verticalmente */
+        align-items: center;
+    }
+
+    .actividad-btn {
+        width: 80%;
+    }
+
+    #danzantes-container {
+        flex-direction: column; /* Apila las figuras de los danzantes */
+        align-items: center;
+    }
+
+    .personaje {
+        width: 90%;
+        margin-bottom: 30px;
+    }
+
+    .pregunta-juego3 {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+  </style>
+
+  
+</head>
+<body>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+
+    <header id="portada">
+        <h1>🌞 Guardianes del Kichwa 🌞</h1>
+        <p>Explora los saberes ancestrales de los Tundunchil: Mama Danza y Wawa Danza Cañari</p>
+        <button id="empezar-btn">🎶 Empezar</button>
+    </header>
+
+    <main id="contenido" style="display:none;">
+        <h2>Selecciona una Actividad Cultural</h2>
+        <button class="volver-btn">🔙 Volver al Inicio</button>
+        <div class="actividades-container">
+            <button class="actividad-btn" data-game="juego1">🧥 Actividad 1: Atuendo Ancestral</button>
+            <button class="actividad-btn" data-game="juego2">📜 Actividad 2: Crónica del Sol</button>
+            <button class="actividad-btn" data-game="juego3">🗺️ Actividad 3: Ruta del Tundunchil</button>
+        </div>
+        <div id="contenedor-juego"></div>
+        <div id="retroalimentacion"></div>
+    </main>
+
+    <audio id="musicaAndina" loop>
+        <source src="assets/musica-andina.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
+    <script src="js/script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // --- Referencias a elementos del DOM ---
+    const portada = document.getElementById('portada');
+    const contenido = document.getElementById('contenido');
+    const empezarBtn = document.getElementById('empezar-btn');
+    const musicaAndina = document.getElementById('musicaAndina');
+    const actividadesContainer = document.querySelector('.actividades-container');
+    const contenedorJuego = document.getElementById('contenedor-juego');
+    const retroalimentacionDiv = document.getElementById('retroalimentacion');
+    const volverBtns = document.querySelectorAll('.volver-btn');
+
+    let currentDraggedElement = null; // Almacena el elemento arrastrado actualmente
+
+    // --- Funciones de Utilidad ---
+
+    /**
+     * Muestra una sección y oculta otras.
+     * @param {HTMLElement} sectionToShow - La sección a mostrar.
+     * @param {HTMLElement[]} sectionsToHide - Un array de secciones a ocultar.
+     */
+    const showSection = (sectionToShow, sectionsToHide = []) => {
+        sectionToShow.style.display = (sectionToShow === portada) ? 'flex' : 'block'; // 'flex' para portada, 'block' para contenido
+        sectionsToHide.forEach(section => {
+            section.style.display = 'none';
+        });
+    };
+
+    /**
+     * Muestra retroalimentación al usuario.
+     * @param {string} message - El mensaje a mostrar.
+     * @param {string} type - El tipo de mensaje ('success', 'error', 'info').
+     */
+    const showFeedback = (message, type) => {
+        retroalimentacionDiv.textContent = message;
+        retroalimentacionDiv.style.color = ''; // Reset color
+        if (type === 'success') {
+            retroalimentacionDiv.style.color = '#28a745'; // Verde
+        } else if (type === 'error') {
+            retroalimentacionDiv.style.color = '#dc3545'; // Rojo
+        } else if (type === 'info') {
+            retroalimentacionDiv.style.color = '#007bff'; // Azul
+        }
+        // Opcional: Limpiar el mensaje después de un tiempo
+        setTimeout(() => {
+            retroalimentacionDiv.textContent = '';
+        }, 3000);
+    };
+
+    /**
+     * Inicializa la funcionalidad de arrastrar y soltar.
+     * Añade event listeners a todos los elementos con la clase 'draggable' y 'dropzone'.
+     */
+    const initializeDragAndDrop = () => {
+        document.querySelectorAll('.draggable').forEach(draggable => {
+            draggable.addEventListener('dragstart', (e) => {
+                // Set data for transfer (value of the item)
+                e.dataTransfer.setData('text/plain', e.target.dataset.value || e.target.textContent.trim());
+                currentDraggedElement = e.target;
+                e.target.classList.add('dragging');
+
+                // If the dragged element is already in a dropzone, temporarily mark its parent dropzone
+                // This helps in 'moving' the element from one dropzone to another
+                if (currentDraggedElement.parentElement && currentDraggedElement.parentElement.classList.contains('dropzone')) {
+                    currentDraggedElement.parentElement.classList.add('source-dropzone');
+                }
+            });
+
+            draggable.addEventListener('dragend', (e) => {
+                e.target.classList.remove('dragging');
+                currentDraggedElement = null;
+                // Clean up the source-dropzone class
+                document.querySelectorAll('.source-dropzone').forEach(dz => dz.classList.remove('source-dropzone'));
+            });
+        });
+
+        document.querySelectorAll('.dropzone').forEach(dropzone => {
+            dropzone.addEventListener('dragover', (e) => {
+                e.preventDefault(); // Permite soltar
+                dropzone.classList.add('drag-over');
+            });
+
+            dropzone.addEventListener('dragleave', () => {
+                dropzone.classList.remove('drag-over');
+            });
+
+            dropzone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropzone.classList.remove('drag-over');
+
+                if (currentDraggedElement) {
+                    const gameId = contenedorJuego.dataset.currentGame;
+                    if (gameId === 'juego1') {
+                        handleDropJuego1(currentDraggedElement, dropzone);
+                    } else if (gameId === 'juego2') {
+                        handleDropJuego2(currentDraggedElement, dropzone);
+                    }
+                }
+            });
+        });
+    };
+
+    // --- Lógica Específica de los Juegos ---
+
+    // --- JUEGO 1: ATUENDO ANCESTRAL (Basado en tu lógica) ---
+    const mamaItemsCorrect = ["Cushma", "Chumpi", "Sombrero blanco", "Pinkullu", "Bombo", "Huactana"];
+    const wawaItemsCorrect = ["Pollerín", "Alfanje", "Cascabeles", "Chanta", "Bandas"];
+
+    // Almacena los elementos soltados en cada dropzone para verificar
+    // This will now track the actual DOM elements placed, not just their values
+    let droppedElementsJuego1 = {
+        'dropzone-mama': [],
+        'dropzone-wawa': []
+    };
+
+    function renderJuego1() {
+        const itemsDraggable = ["Cushma", "Chumpi", "Sombrero blanco", "Pinkullu", "Bombo", "Huactana", "Pollerín", "Alfanje", "Cascabeles", "Chanta", "Bandas"];
+
+        contenedorJuego.innerHTML = `
+            <h3>🧥 Actividad 1: Atuendo Ancestral 🧥</h3>
+            <p>Arrastra cada objeto o prenda a la figura correcta: Mama Danza o Wawa Danza.</p>
+            <div id="palabras-atuendo">
+                ${itemsDraggable.map(item => `<div class="draggable" data-value="${item}" draggable="true">${item}</div>`).join('')}
+            </div>
+            <div id="danzantes-container">
+                <div class="personaje">
+                    <h4>Mama Danza</h4>
+                    <img src="images/mama-danza.png" alt="Mama Danza">
+                    <div class="dropzone" id="dropzone-mama" data-target="mama-danza"></div>
+                </div>
+                <div class="personaje">
+                    <h4>Wawa Danza</h4>
+                    <img src="images/wawa-danza.png" alt="Wawa Danza">
+                    <div class="dropzone" id="dropzone-wawa" data-target="wawa-danza"></div>
+                </div>
+            </div>
+            <button id="verificar-juego1" class="actividad-btn">Verificar</button>
+            <button id="reintentar-juego1" class="actividad-btn">Reintentar</button>
+            <button id="ver-traduccion-juego1" class="actividad-btn">Ver traducción</button>
+        `;
+        contenedorJuego.dataset.currentGame = 'juego1';
+        initializeDragAndDrop();
+
+        document.getElementById('verificar-juego1').addEventListener('click', verificarJuego1);
+        document.getElementById('reintentar-juego1').addEventListener('click', () => {
+            renderJuego1(); // Vuelve a renderizar el juego para resetear
+            showFeedback('¡Intenta de nuevo!', 'info');
+        });
+        document.getElementById('ver-traduccion-juego1').addEventListener('click', mostrarTraduccionesJuego1);
+        // Reset dropped items for a new game session
+        droppedElementsJuego1 = { 'dropzone-mama': [], 'dropzone-wawa': [] };
+    }
+
+    function handleDropJuego1(draggedElement, dropzone) {
+        const itemValue = draggedElement.dataset.value;
+        const dropzoneId = dropzone.id;
+
+        // Check if the dragged element is already in a dropzone
+        const currentParentDropzone = draggedElement.parentElement;
+        if (currentParentDropzone && currentParentDropzone.classList.contains('dropzone')) {
+            // Remove from old dropzone's tracking
+            const oldDropzoneId = currentParentDropzone.id;
+            const indexInOldZone = droppedElementsJuego1[oldDropzoneId].indexOf(draggedElement);
+            if (indexInOldZone > -1) {
+                droppedElementsJuego1[oldDropzoneId].splice(indexInOldZone, 1);
+            }
+        } else {
+            // If it's coming from the initial palette, remove it from there too.
+            // This prevents duplicate elements if it's dragged back to the palette then to a dropzone.
+            if (draggedElement.parentElement && draggedElement.parentElement.id === 'palabras-atuendo') {
+                draggedElement.parentElement.removeChild(draggedElement);
+            }
+        }
+
+        // Append the element to the new dropzone
+        dropzone.appendChild(draggedElement);
+        // Add to the new dropzone's tracking
+        droppedElementsJuego1[dropzoneId].push(draggedElement);
+
+        showFeedback(`¡${itemValue} colocado en ${dropzone.dataset.target}!`, 'info');
+    }
+
+    function verificarJuego1() {
+        // Get the current values from the DOM elements in each dropzone
+        const mamaWords = Array.from(document.getElementById('dropzone-mama').children).map(e => e.dataset.value);
+        const wawaWords = Array.from(document.getElementById('dropzone-wawa').children).map(e => e.dataset.value);
+
+        // Function to compare two arrays ignoring order and duplicates
+        const arraysEqualUnordered = (arr1, arr2) => {
+            if (arr1.length !== arr2.length) return false;
+            const sortedArr1 = [...arr1].sort();
+            const sortedArr2 = [...arr2].sort();
+            return JSON.stringify(sortedArr1) === JSON.stringify(sortedArr2);
+        };
+
+        const isMamaCorrect = arraysEqualUnordered(mamaWords, mamaItemsCorrect);
+        const isWawaCorrect = arraysEqualUnordered(wawaWords, wawaItemsCorrect);
+
+        if (isMamaCorrect && isWawaCorrect) {
+            showFeedback("¡Bien hecho! Estás preservando nuestra tradición. ✨", 'success');
+        } else {
+            showFeedback("Intenta otra vez. Observa bien sus vestimentas. 😔", 'error');
+        }
+    }
+
+    function mostrarTraduccionesJuego1() {
+        alert(`Traducción de elementos:
+- Cushma: poncho
+- Chumpi: faja
+- Pinkullu: flauta
+- Bombo: tambor
+- Huactana: pieza de madera
+- Pollerín: faldilla
+- Alfanje: espada ritual
+- Cascabeles: sonajas
+- Chanta: peluca con trenzas
+- Bandas: cintas multicolores`);
+    }
+
+    // --- JUEGO 2: CRÓNICA DEL SOL (Basado en tu lógica) ---
+    const respuestasJuego2 = {
+        "blank-1": "Inti",
+        "blank-2": "Atuendo",
+        "blank-3": "Alfanje",
+        "blank-4": "Tauna",
+        "blank-5a": "Allpamama", // Primer Allpamama
+        "blank-6": "Mama Danza",
+        "blank-7": "Pinkullu",
+        "blank-8": "Bombo",
+        "blank-5b": "Allpamama" // Segundo Allpamama
+    };
+
+    function renderJuego2() {
+        const textParts = [
+            { text: "Cuando el ", type: "static" },
+            { id: "blank-1", type: "blank" },
+            { text: " despertaba entre las montañas, los Wawa Danza ya estaban en la plaza. Ataban su ", type: "static" },
+            { id: "blank-2", type: "blank" },
+            { text: ", recogían su ", type: "static" },
+            { id: "blank-3", type: "blank" },
+            { text: " con símbolos ancestrales, y esperaban la señal de la ", type: "static" },
+            { id: "blank-4", type: "blank" },
+            { text: ". En ese momento, la ", type: "static" },
+            { id: "blank-5a", type: "blank" }, // Primer Allpamama
+            { text: " resonaba desde los cerros como un canto antiguo. El ", type: "static" },
+            { id: "blank-6", type: "blank" },
+            { text: " elevaba la mirada al cielo y empezaba a soplar su ", type: "static" },
+            { id: "blank-7", type: "blank" },
+            { text: ", mientras golpeaba su ", type: "static" },
+            { id: "blank-8", type: "blank" },
+            { text: ". Era el inicio de un nuevo ciclo para la ", type: "static" },
+            { id: "blank-5b", type: "blank" }, // Segundo Allpamama
+            { text: ", la gran dadora de vida.", type: "static" }
+        ];
+
+        // Se duplica 'Allpamama' para que haya dos disponibles para arrastrar
+        const draggableWords = ["Inti", "Atuendo", "Alfanje", "Tauna", "Allpamama", "Mama Danza", "Pinkullu", "Bombo", "Allpamama"];
+
+        let gameHTML = `
+            <h3>📜 Actividad 2: Crónica de los Danzantes del Sol 📜</h3>
+            <p>Arrastra las palabras al lugar correcto en el texto.</p>
+            <div id="texto-cronica"><p>`;
+
+        textParts.forEach(part => {
+            if (part.type === "static") {
+                gameHTML += part.text;
+            } else {
+                gameHTML += `<span class="dropzone" id="${part.id}" data-correct-value="${respuestasJuego2[part.id]}"></span>`;
+            }
+        });
+        gameHTML += `</p></div>
+            <div id="palabras-arrastrables">`;
+
+        const shuffledWords = draggableWords.sort(() => Math.random() - 0.5);
+        shuffledWords.forEach(word => {
+            gameHTML += `<div class="draggable" draggable="true" data-value="${word}">${word}</div>`;
+        });
+
+        gameHTML += `</div>
+            <button id="verificar-juego2" class="actividad-btn">Verificar</button>
+            <button id="reintentar-juego2" class="actividad-btn">Reintentar</button>
+            <button id="ver-traduccion-juego2" class="actividad-btn">Ver traducción</button>
+        `;
+        contenedorJuego.innerHTML = gameHTML;
+        contenedorJuego.dataset.currentGame = 'juego2';
+        initializeDragAndDrop();
+
+        document.getElementById('verificar-juego2').addEventListener('click', verificarJuego2);
+        document.getElementById('reintentar-juego2').addEventListener('click', () => {
+            renderJuego2(); // Vuelve a renderizar el juego para resetear
+            showFeedback('¡Intenta de nuevo!', 'info');
+        });
+        document.getElementById('ver-traduccion-juego2').addEventListener('click', mostrarTraduccionesJuego2);
+    }
+
+    function handleDropJuego2(draggedElement, dropzone) {
+        // If the dropzone already has an element, return it to the palette
+        if (dropzone.children.length > 0) {
+            const existingElement = dropzone.querySelector('.draggable');
+            if (existingElement) {
+                document.getElementById('palabras-arrastrables').appendChild(existingElement);
+            }
+        }
+        // Append the new element to the dropzone
+        dropzone.appendChild(draggedElement);
+    }
+
+    function verificarJuego2() {
+        let correctCount = 0;
+        let totalBlanks = 0;
+        document.querySelectorAll('#texto-cronica .dropzone').forEach(dropzone => {
+            totalBlanks++;
+            const droppedWordElement = dropzone.querySelector('.draggable');
+            const correctWord = dropzone.dataset.correctValue;
+
+            dropzone.style.borderBottomColor = ''; // Reset border color
+
+            if (droppedWordElement) {
+                const droppedWord = droppedWordElement.dataset.value;
+                if (droppedWord === correctWord) {
+                    correctCount++;
+                    dropzone.style.borderBottomColor = '#28a745'; // Verde para correcto
+                } else {
+                    dropzone.style.borderBottomColor = '#dc3545'; // Rojo para incorrecto
+                }
+            } else {
+                dropzone.style.borderBottomColor = '#ffc107'; // Amarillo para vacío
+            }
+        });
+
+        if (correctCount === totalBlanks) {
+            showFeedback('¡Sabiduría ancestral revive contigo! ✨', 'success');
+        } else if (correctCount > 0) {
+            showFeedback(`Casi lo logras. Tienes ${correctCount} de ${totalBlanks} correctas.`, 'info');
+        } else {
+            showFeedback('Sigue buscando, las palabras tienen espíritu. 🧐', 'error');
+        }
+    }
+
+    function mostrarTraduccionesJuego2() {
+        alert(`Traducción de palabras:
+- Inti: sol
+- Atuendo: ropa ceremonial
+- Alfanje: espada ritual
+- Tauna: bastón
+- Allpamama: madre tierra
+- Pinkullu: flauta
+- Bombo: tambor`);
+    }
+
+    // --- JUEGO 3: CALENDARIO SAGRADO (Basado en tu lógica) ---
+    function renderJuego3() {
+        contenedorJuego.innerHTML = `
+            <h3>🗺️ Actividad 3: Calendario Sagrado 🗺️</h3>
+            <p>Selecciona la traducción correcta de cada festividad andina:</p>
+            <div class="pregunta-juego3">
+                <label for="killa">Killa Raymi →</label>
+                <select id="killa">
+                    <option value="">Selecciona</option>
+                    <option value="Fiesta de la Luna">Fiesta de la Luna</option>
+                    <option value="Fiesta del Sol">Fiesta del Sol</option>
+                </select>
+            </div>
+            <div class="pregunta-juego3">
+                <label for="kapak">Kapak Raymi →</label>
+                <select id="kapak">
+                    <option value="">Selecciona</option>
+                    <option value="Fiesta del Poder">Fiesta del Poder</option>
+                    <option value="Fiesta del Florecimiento">Fiesta del Florecimiento</option>
+                </select>
+            </div>
+            <div class="pregunta-juego3">
+                <label for="pawkar">Pawkar Raymi →</label>
+                <select id="pawkar">
+                    <option value="">Selecciona</option>
+                    <option value="Fiesta del Florecimiento">Fiesta del Florecimiento</option>
+                    <option value="Fiesta de la Luna">Fiesta de la Luna</option>
+                </select>
+            </div>
+            <div class="pregunta-juego3">
+                <label for="inti">Inti Raymi →</label>
+                <select id="inti">
+                    <option value="">Selecciona</option>
+                    <option value="Fiesta del Sol">Fiesta del Sol</option>
+                    <option value="Fiesta del Poder">Fiesta del Poder</option>
+                </select>
+            </div>
+            <button id="verificar-juego3" class="actividad-btn">Verificar</button>
+            <button id="reintentar-juego3" class="actividad-btn">Reintentar</button>
+            <button id="ver-traduccion-juego3" class="actividad-btn">Ver traducción</button>
+        `;
+        contenedorJuego.dataset.currentGame = 'juego3';
+
+        document.getElementById('verificar-juego3').addEventListener('click', verificarJuego3);
+        document.getElementById('reintentar-juego3').addEventListener('click', () => {
+            renderJuego3(); // Vuelve a renderizar el juego para resetear
+            showFeedback('¡Intenta de nuevo!', 'info');
+        });
+        document.getElementById('ver-traduccion-juego3').addEventListener('click', mostrarTraduccionesJuego3);
+    }
+
+    function verificarJuego3() {
+        let correctas =
+            document.getElementById("killa").value === "Fiesta de la Luna" &&
+            document.getElementById("kapak").value === "Fiesta del Poder" &&
+            document.getElementById("pawkar").value === "Fiesta del Florecimiento" &&
+            document.getElementById("inti").value === "Fiesta del Sol";
+
+        if (correctas) {
+            showFeedback("¡Estás preservando el orden sagrado del tiempo! 🎉", 'success');
+        } else {
+            showFeedback("La Pachamama espera. Intenta de nuevo. 😔", 'error');
+        }
+    }
+
+    function mostrarTraduccionesJuego3() {
+        alert(`Traducción de festividades:
+- Killa Raymi: Fiesta de la Luna (septiembre)
+- Kapak Raymi: Fiesta del Poder (diciembre)
+- Pawkar Raymi: Fiesta del Florecimiento (marzo)
+- Inti Raymi: Fiesta del Sol (junio)`);
+    }
+
+    // --- Manejadores de Eventos Globales ---
+
+    empezarBtn.addEventListener('click', () => {
+        showSection(contenido, [portada]);
+        musicaAndina.play().catch(error => {
+            console.error("Error al intentar reproducir la música:", error);
+            // Considera añadir un botón de "reproducir música" si es crítico.
+        });
+    });
+
+    // Manejador para los botones de actividad
+    actividadesContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('actividad-btn') && e.target.dataset.game) {
+            const game = e.target.dataset.game;
+            switch (game) {
+                case 'juego1':
+                    renderJuego1();
+                    break;
+                case 'juego2':
+                    renderJuego2();
+                    break;
+                case 'juego3':
+                    renderJuego3();
+                    break;
+                default:
+                    contenedorJuego.innerHTML = '<p>Actividad no encontrada.</p>';
+            }
+            // Oculta los botones de actividad una vez que se selecciona un juego
+            actividadesContainer.style.display = 'none';
+            // Muestra el botón de volver
+            document.querySelector('.volver-btn').style.display = 'inline-block';
+            retroalimentacionDiv.textContent = ''; // Limpia cualquier mensaje anterior
+        }
+    });
+
+    // Manejador para los botones "Volver al Inicio"
+    volverBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            showSection(portada, [contenido]);
+            musicaAndina.pause();
+            musicaAndina.currentTime = 0; // Reinicia la música
+            contenedorJuego.innerHTML = ''; // Limpia el contenido del juego
+            actividadesContainer.style.display = 'flex'; // Vuelve a mostrar los botones de actividad
+            // Oculta el botón de volver si no está en la portada
+            if (portada.style.display === 'flex' || portada.style.display === '') {
+                 document.querySelector('.volver-btn').style.display = 'none';
+            }
+            retroalimentacionDiv.textContent = ''; // Limpia cualquier mensaje de retroalimentación
+        });
+    });
+
+    // Ocultar el botón de volver al inicio al cargar la página
+    document.querySelector('.volver-btn').style.display = 'none';
+});
+  </script>
+</body>
+</html>
